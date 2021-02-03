@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width" content="initial-scale=1">
+  <link rel="shortcut icon" href="/ico.png" type="image/png">
+  <script type="text/javascript">
+var oReq = createXmlHttpObject();
+function createXmlHttpObject() {
+	if (window.XMLHttpRequest) {
+		oReq = new XMLHttpRequest();
+	}
+	else {
+		oReq = new ActiveXObject('Microsoft.XMLHTTP');
+	}
+	return oReq;
+}
+function pageLoad() {
+	if (oReq.readyState==0 || oReq.readyState==4) {
+		oReq.open('PUT','/config.json',true);
+		oReq.send();
+		oReq.onload = function(e) {loadBlock();}
+	}
+}
+function loadBlock() {
+	dataJson = JSON.parse(oReq.responseText);
+	dataHtml = document.getElementsByTagName('body')[0].innerHTML;
+	var temp;
+	for (var key in dataJson) {
+		temp = dataHtml.replace(new RegExp('{{'+key+'}}', 'g'), dataJson[key]);
+		dataHtml = temp;
+	}
+	document.getElementsByTagName('body')[0].innerHTML = dataHtml;
+}
+function sendRequest(data) {
+	oReq = new XMLHttpRequest();
+	oReq.open("GET", data, true);
+	oReq.send();
+	var inputs = document.getElementsByTagName("input");
+	for (var i = 0; i < inputs.length; i++) {
+		if (inputs[i].type === 'submit') {
+			inputs[i].disabled = true;
+		}
+	}
+	location.reload();
+}
+function findValue(id) {
+	var value = document.getElementById(id).value;
+	return value;
+}
+function saveAll(){
+    if (confirm("Устройство будет перезагружено. Продолжить?")) {
+		temp = "/api/config?wifiname="+findValue('nameWiFi')+"&ssidsta="+findValue('ssidSTA')+"&passwordsta="+findValue('passwordSTA')+"&ssidap="+findValue('ssidAP')+"&passwordap="+findValue('passwordAP');
+		sendRequest(temp);
+		sendRequest("/api/reboot");
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+function deviceReboot() {
+	if (confirm("Будет выполнена перезагрузка устройства. Продолжить?")) {
+		sendRequest("/api/reboot");
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+  </script>  
+  <style type="text/css">
+body {
+  background-color: #e9f0f0;
+}
+table {
+  width: 350px;
+  background: #252F48;
+  border-radius: 10px;
+}
+table th {
+  text-align: center;
+  font-size: 20px;
+  color: #EDB749;
+  padding: 6px 10px;
+}
+table td {
+  color: #CAD4D6;
+  padding: 6px 10px;
+}
+a.button {
+  text-align:center;
+  font-size: 20px;
+  color: white;
+  display: inline-block;
+  text-decoration: none;
+  padding: 8px 0px;
+  margin: 8px 0px;
+  border-radius: 6px;
+  background: #EDB749;
+  width: 100%;
+}
+a.button:hover {
+  background: #ED9549;
+  color: #CAD4D6;
+}
+a.link {
+  text-align:center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 10px 17px;
+}
+img {
+  border-radius: 10px;
+}
+input {
+  text-align: center;
+  font-size: 18px;
+  border-width: 0px 0px;
+  border-radius: 6px;
+  width: 100%;
+  height: 20px;
+  padding: 8px 0px;
+  margin: 4px 0px;
+}
+h3 {
+  text-transform: uppercase;
+  font-size: 22px;
+  color: #252F48;
+  margin: 1em 0 0.5em 0;
+}
+  </style>
+  <title>ЛБП KORAD</title>
+ </head>
+ <body onload="pageLoad()">
+ <table align="center">
+   <caption><h3>Настройки {{nameWiFi}}</h3></caption>
+   <tr><th>Имя устройства в сети</th></tr>
+   <tr><td>
+	<input id="nameWiFi" value="{{nameWiFi}}" pattern="[0-9a-zA-Zа-яА-Я. ]{1,20}" placeholder="Имя устройства">
+   </td></tr>
+   <tr><th>Подключение к WiFi</th></tr>
+   <tr><td>
+	<input id="ssidSTA" value="{{ssidSTA}}" pattern="[0-9a-zA-Z.]{1,15}" placeholder="Имя сети WiFi">
+	<input id="passwordSTA" value="{{passwordSTA}}" pattern=".{8,15}" placeholder="Пароль" onfocus="this.type='text'" type="password">
+   </td></tr>
+   <tr><th>Точка доступа WiFi</th></tr>
+   <tr><td>
+	<input id="ssidAP" value="{{ssidAP}}" pattern="[0-9a-zA-Z.]{1,15}" placeholder="Имя точки доступа">
+	<input id="passwordAP" value="{{passwordAP}}" pattern=".{8,15}" placeholder="Пароль" onfocus="this.type='text'" type="password">
+   </td></tr>
+   <tr><td>
+    <a class="button" onclick="saveAll()">Сохранить</a>
+	<a href="/api/update" target="_blank" class="button">Обновить</a>
+	<a class="button" onclick="deviceReboot()">Перезагрузить</a>
+	<a href="/api.htm" target="_blank" class="button">Посмотреть протокол</a>
+   </td></tr>
+   <tr><td>
+    <a href="https://www.youtube.com/channel/UCbkE52YKRphgkvQtdwzQbZQ" target="_blank" class="link"><img src='/youtube.png'/></a>
+	<a href="https://vk.com/id395646965" target="_blank" class="link"><img src='/vkontakte.png'/></a>
+	<a href="https://www.instagram.com/romasklr" target="_blank" class="link"><img src='/instagram.png'/></a>
+	<a href="https://github.com/S-LABc" target="_blank" class="link"><img src='/github.png'/></a>
+   </td></tr>
+   <tr><th>Copyright © 2020 Roman Sklyar</th></tr>
+</table>
+ </body>
+</html>
