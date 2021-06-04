@@ -5,6 +5,8 @@
 * KA3005P Schematics - Принципиальные схемы всех узлов блока
 * KORAD 3005 EEPROM - Дампы памяти EEPROM (версия P и D)
 * KORAD_ESP8266 - Скетч для Arduino IDE
+* NUC029 PDF - Документация на микроконтроллер NUC029
+* ESP Documents - Документация на модули ESP8266
 
 # Сылки
 * [Ядро](https://github.com/esp8266/Arduino) для поддержки ESP8266 в Arduino IDE
