@@ -2,9 +2,9 @@
 <html>
  <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width" content="initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" href="/ico.png" type="image/png">
-  <script type="text/javascript">
+  <script>
 var oReq = createXmlHttpObject();
 function createXmlHttpObject() {
 	if (window.XMLHttpRequest) {
@@ -69,12 +69,14 @@ function deviceReboot() {
 	}
 }
   </script>  
-  <style type="text/css">
+  <style>
 body {
+  place-items: center;
   background-color: #e9f0f0;
 }
 table {
-  width: 350px;
+  width: 100%;
+  max-width:350px;
   background: #252F48;
   border-radius: 10px;
 }
@@ -94,13 +96,14 @@ a.button {
   color: white;
   display: inline-block;
   text-decoration: none;
+  user-select: none;
   padding: 8px 0px;
   margin: 8px 0px;
   border-radius: 6px;
   background: #EDB749;
   width: 100%;
 }
-a.button:hover {
+a.button:active {
   background: #ED9549;
   color: #CAD4D6;
 }
@@ -108,7 +111,7 @@ a.link {
   text-align:center;
   text-decoration: none;
   display: inline-block;
-  margin: 10px 17px;
+  margin: 10px 5px;
 }
 img {
   border-radius: 10px;
@@ -157,8 +160,6 @@ h3 {
    </td></tr>
    <tr><td>
     <a href="https://www.youtube.com/channel/UCbkE52YKRphgkvQtdwzQbZQ" target="_blank" class="link"><img src='/youtube.png'/></a>
-	<a href="https://vk.com/id395646965" target="_blank" class="link"><img src='/vkontakte.png'/></a>
-	<a href="https://www.instagram.com/romasklr" target="_blank" class="link"><img src='/instagram.png'/></a>
 	<a href="https://github.com/S-LABc" target="_blank" class="link"><img src='/github.png'/></a>
    </td></tr>
    <tr><th>Copyright © 2020 Roman Sklyar</th></tr>

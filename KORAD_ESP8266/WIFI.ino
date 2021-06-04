@@ -6,12 +6,12 @@ void initWIFI() {
   WiFi.begin(ssid_sta, password_sta);
   while(--tries && WiFi.status() != WL_CONNECTED) { //Подключение к роутеру
     digitalWrite(STATUS_LED, !digitalRead(STATUS_LED));
-    delay(500);
+    delay(1000);
   }
   if(WiFi.status() != WL_CONNECTED) { //Запуск в режиме точки доступа
     WiFi.disconnect();
     WiFi.mode(WIFI_AP);
-    WiFi.softAP(ssid_ap, password_ap); //ssid_ap.c_str() password_ap.c_str()
+    WiFi.softAP(ssid_ap, password_ap);
     WiFi.softAPConfig(local_ip, gateway_ip, subnet);
     digitalWrite(STATUS_LED, LOW);
   }
