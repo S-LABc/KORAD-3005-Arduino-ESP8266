@@ -7,9 +7,9 @@
 * KORAD_ESP8266 - Скетч для Arduino IDE
 
 # Сылки
-* Ядро для поддержки ESP8266 в Arduino IDE https://github.com/esp8266/Arduino
-* Плагин для загрузки сайта на ESP8266 https://github.com/esp8266/arduino-esp8266fs-plugin
+* [Ядро](https://github.com/esp8266/Arduino) для поддержки ESP8266 в Arduino IDE
+* [Плагин](https://github.com/esp8266/arduino-esp8266fs-plugin) для загрузки сайта на ESP8266
 
-* Видео о блоках https://youtu.be/iJMpMA4nnYA
-* Видео о микроконтроллере в блоке https://youtu.be/q2ZY1XN7J2Y
-* Видео о подключении ESP8266 https://youtu.be/a3eGKogpBos
+* [Видео](https://youtu.be/iJMpMA4nnYA) о блоках
+* [Видео](https://youtu.be/q2ZY1XN7J2Y) о микроконтроллере в блоке
+* [Видео](https://youtu.be/a3eGKogpBos) о подключении ESP8266
