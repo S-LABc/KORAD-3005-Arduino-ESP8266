@@ -11,7 +11,3 @@
 # Сылки
 * [Ядро](https://github.com/esp8266/Arduino) для поддержки ESP8266 в Arduino IDE
 * [Плагин](https://github.com/esp8266/arduino-esp8266fs-plugin) для загрузки сайта на ESP8266
-
-* [Видео](https://youtu.be/iJMpMA4nnYA) о блоках
-* [Видео](https://youtu.be/q2ZY1XN7J2Y) о микроконтроллере в блоке
-* [Видео](https://youtu.be/a3eGKogpBos) о подключении ESP8266
